@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
+      <nav className="navbar sticky-top navbar-expand-lg bg-transparent" style={{boxShadow: '0px 2px 27px -9px rgba(0,0,0,.4)'}} data-bs-theme="light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <i
@@ -23,7 +23,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav flex-row flex-wrap bd-navbar-nav">
               <li className="nav-item">
                 <Link
@@ -74,10 +74,11 @@ export default function Navbar() {
                 style={{
                   marginLeft: "150px",
                   width: "450px",
-                  backgroundColor: "black",
+                  backgroundColor: "#edf6ec",
                   outlineColor: "black",
                   borderRadius: "40px",
-                  borderColor: "rgb(6 37 82)",
+                  borderColor: "white",
+                  
                 }}
               />
               <button
