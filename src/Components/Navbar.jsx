@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <div>
-      <nav className="navbar sticky-top navbar-expand-lg bg-transparent" style={{boxShadow: '0px 2px 27px -9px rgba(0,0,0,.4)'}} data-bs-theme="light">
+      <nav className="navbar fixed-top navbar-expand-lg " style={{boxShadow: '0px 2px 27px -9px rgba(0,0,0,.4)', WebkitBackdropFilter: 'blur(8px)', backdropFilter: 'blur(8px)'}} data-bs-theme="light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <i
@@ -12,19 +12,11 @@ export default function Navbar() {
             ></i>
             iDiary
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav flex-row flex-wrap bd-navbar-nav">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
                   className="nav-link active"
@@ -72,7 +64,7 @@ export default function Navbar() {
                 placeholder="Search Notes"
                 aria-label="Search"
                 style={{
-                  marginLeft: "150px",
+                  marginLeft: "15em",
                   width: "450px",
                   backgroundColor: "#edf6ec",
                   outlineColor: "black",
