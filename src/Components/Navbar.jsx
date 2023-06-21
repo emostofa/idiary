@@ -27,6 +27,15 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/notes"
+                >
+                  Notes
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link active" to="/about">
                   About
                 </Link>
