@@ -66,15 +66,13 @@ export default function Navbar() {
                 </ul>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            <form className="d-flex " role="search" style={{width: "-webkit-fill-available"}}>
               <input
                 className="form-control  me-2"
                 type="search"
                 placeholder="Search Notes"
                 aria-label="Search"
                 style={{
-                  marginLeft: "15em",
-                  width: "450px",
                   backgroundColor: "#edf6ec",
                   outlineColor: "black",
                   borderRadius: "40px",
@@ -83,9 +81,10 @@ export default function Navbar() {
                 }}
               />
               <button
-                className="btn btn-primary "
+                className="btn btn-primary  "
                 type="button"
                 style={{
+                  marginRight:".3rem",
                   paddingY: "1rem",
                   paddingX: ".05rem",
                   fontSize: "1rem",
@@ -96,9 +95,7 @@ export default function Navbar() {
                 <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             </form>
-          </div>
-
-          <div className="btn-group">
+            <div className="btn-group d-flex">
             <button
               className="btn btn-secondary dropdown-toggle"  data-bs-display="static"
     
@@ -133,6 +130,9 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
+          </div>
+
+          
         </div>
       </nav>
     </div>
