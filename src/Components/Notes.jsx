@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NoteContext } from "../Contexts/Notes/NotesContext";
+import NoteCard from "./NoteCard";
 
 const Notes = () => {
   const [title, setTitle] = useState(""); 
@@ -30,7 +31,9 @@ const handleNoteSubmit = (e) => {
       description: description,
     };
     addNote(newNote);
+    clearNoteForm();
   }
+  
   };
   const handleEditSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +57,7 @@ const handleNoteSubmit = (e) => {
       }
       return note;
     });
-    setUpNotes(updatedNotes);
+    
   };
 
   const handleCardDescriptionChange = (noteId, value) => {
@@ -77,12 +80,11 @@ const handleNoteSubmit = (e) => {
 
   const handleNoteEdit = (noteId) => {
     const noteToEdit = notes.find((note) => note._id === noteId);
-    console.log(noteToEdit , noteId);
+    ///console.log(noteToEdit , noteId);
     if (noteToEdit) {
-      // setTitle(noteToEdit.title);
-      // setDescription(noteToEdit.description);
-      setEditingNoteId(noteId);
-      
+       setTitle(noteToEdit.title);
+       setDescription(noteToEdit.description);
+       setEditingNoteId(noteId);
     }
   };
 
@@ -115,31 +117,46 @@ const handleNoteSubmit = (e) => {
           ></textarea>
         </div>
         <div className="mb-3">
-          <button type="submit" className="btn btn-primary btn-sm me-2">
+          <button type="submit"  className="btn btn-primary btn-sm me-2">
             Add Note
           </button>
           
         </div>
       </form>
-      <ul className="col-md-12 mt-4 list-unstyled">
+
+<ul className="d-flex flex-wrap col-md-12 justify-content-evenly mt-4 list-unstyled">
+{notes.length > 0 ? (
+          notes.toReversed().map((note) => (
+            <NoteCard key={note._id} note={note} >
+
+            </NoteCard>
+          
+          ))):"No notes found"}
+
+
+
+</ul>
+
+
+      {/* <ul className="d-flex flex-wrap justify-content-between col-md-12 mt-4 list-unstyled">
         {notes.length > 0 ? (
           notes.toReversed().map((note) => (
             <div
               key={note._id}
-              className="col-md-5 card d-inline-flex  m-2" 
-              style={{ maxWidth: "18rem" }}
+              className="col-md-3 card d-inline-flex  m-2" 
+              style={{ maxWidth: "15em" }}
             >
               <div className="card-body">
                 {editingNoteId === note._id ? (
                   <>
                     <input
                       type="text"
-                      value={note.title}
+                      value={upNotes.title}
                       onChange={(e) => handleCardTitleChange(note._id, e.target.value)}
                       className="form-control mb-2"
                     />
                     <textarea
-                      value={note.description}
+                      value={upNotes.description}
                       onChange={(e) => handleCardDescriptionChange(note._id, e.target.value)}
                       className="form-control"
                       rows="3"
@@ -148,7 +165,7 @@ const handleNoteSubmit = (e) => {
                 ) : (
                   <>
                     <h5 className="card-title">{note.title}</h5>
-                    <p className="card-text">{note.description}</p>
+                    <p className="card-text">{note.description.length <50 ? note.description:note.description.slice(0,50)}</p>
                   </>
                 )}
               </div>
@@ -190,7 +207,7 @@ const handleNoteSubmit = (e) => {
         ) : (
           <p className="text-gray-600">No notes found.</p>
         )}
-      </ul>
+      </ul> */}
 
     </div>
   );
