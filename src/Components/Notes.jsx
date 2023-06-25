@@ -130,6 +130,7 @@ const handleNoteSubmit = (e) => {
             <NoteCard key={note._id} note={note} >
 
             </NoteCard>
+            
           
           ))):"No notes found"}
 
