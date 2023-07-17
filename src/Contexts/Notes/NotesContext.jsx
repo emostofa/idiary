@@ -1,16 +1,21 @@
-import { createContext, useState } from "react";
+import { createContext, useState,useEffect } from "react";
 import axios from "axios";
 
 export const NoteContext = createContext();
 const host = "http://192.168.0.143:4000";
-const authToken = localStorage.authToken;
+
+// const localStorage.authToken = localStorage.localStorage.authToken;
   
 
 export const NoteContextProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
+  useEffect(() => {
+    
+  }, [localStorage]);
+  
 
   const addNote = async (newNote) => {
-    if(!authToken) return console.log('Not signed In! ')
+    if(!localStorage.authToken) return console.log('Not signed In! ')
     
     try {
       //axios for talking to the server
@@ -18,7 +23,7 @@ export const NoteContextProvider = ({ children }) => {
       const response = await axios.post(`${host}/api/notes/newnote`, newNote, {
         headers: {
             'Content-Type': 'application/json',
-            'auth-token':authToken
+            'auth-token':localStorage.authToken
           },
       });
       setNotes([...notes, response.data]); //for showing the notes
@@ -39,7 +44,7 @@ export const NoteContextProvider = ({ children }) => {
          await axios.patch(`${host}/api/notes/updatenote/${noteId}`,updatedNotes, {
             headers:{
                 'Content-Type':'application/json',
-                'auth-token':authToken
+                'auth-token':localStorage.authToken
             },
             
         });
@@ -56,7 +61,7 @@ export const NoteContextProvider = ({ children }) => {
          await axios.delete(`${host}/api/notes/deletenote/${noteId}`, {
             headers:{
                 'Content-Type':'application/json',
-                'auth-token':authToken
+                'auth-token':localStorage.authToken
             },
             
         });
@@ -68,12 +73,12 @@ export const NoteContextProvider = ({ children }) => {
 
   //getting the notes from the server
   const getNotes = async () => {
-    if(!authToken) return console.log('Not signed In! ');
+    if(!localStorage.authToken) return console.log('Not signed In! ');
     try{
         const response = await axios.get(`${host}/api/notes/fetchnotes`,{
             headers:{
                 'Content-Type':'application/json',
-                'auth-token':authToken
+                'auth-token':localStorage.authToken
             },
         });
         setNotes([...response.data]);

@@ -32,24 +32,26 @@ export default function Home() {
                   .typeString(
                     '<span style="color:#27ae60; font-size:75px" > codes</br></span>'
                   )
-                  .typeString('<span style="font-size:75px"> All in one</span>')
+                  .typeString('<span style="font-size:75px"> All in one place! </span>')
                   .pauseFor(500)
-                  .deleteChars(3)
+                  .deleteChars(18)
+                  
                   .typeString(
-                    '<a style="font-size:75px; color:red" href="/">one</a>'
+                    
                   )
-
-                  .typeString('<span style="font-size:75px; " > place!</span>')
+                 
                   .pauseFor(5000)
                   .start();
               }}
               options={{
                 autoStart: true,
                 loop: false,
-                deleteSpeed: 70,
+      
+                deleteSpeed: 35,
                 cursor: "",
               }}
             />
+            <Link to="/notes" className="btn btn-warning" style={{fontSize:"20px", fontWeight:'bold'}}  type="button"  >Go to Notes</Link>
           </div>
           <div className="col-md-6">
             <div className="row">

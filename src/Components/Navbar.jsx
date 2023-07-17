@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
 
   const handleLogout =() => {
+
+    
     localStorage.clear();
   }
   return (
@@ -125,9 +127,11 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-              <Link className="btn mx-4" to="/" type="button" onClick={handleLogout}>
+              <a className="btn mx-4" href="/" type="button" onClick={ handleLogout}>
                   Logout
-                </Link>
+                </a>
+                
+
               </li>
             </ul>
           </div>

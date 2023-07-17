@@ -9,6 +9,7 @@ import Notes from "./Components/Notes";
 import { NoteContextProvider } from "./Contexts/Notes/NotesContext";
 import { UserContextProvider } from "./Contexts/User/UserContext";
 import Profile from "./Components/Profile";
+import ResetPass from "./Components/ResetPass";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/notes" element={<Notes />} />
             <Route path="/profile" element={<Profile/>}/>
+            <Route path="/resetpass" element={<ResetPass/>}/>
           </Routes>
         </NoteContextProvider>
       </UserContextProvider>

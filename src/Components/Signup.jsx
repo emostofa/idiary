@@ -1,15 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../Contexts/User/UserContext";
 
 export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [nUser, setUser] = useState("");
   const [repPassword, setRepPassword] = useState("");
-  const { success, responseText, addUser } = useContext(UserContext);
-  const navigate = useNavigate();
+  const { addUser } = useContext(UserContext);
+  
 
 
  
@@ -41,16 +40,10 @@ export default function Signup() {
       };
       addUser(newUser);
     }
-    setUser("");
+
   };
 
-  const clearNoteForm = () => {
-    setEmail("");
-    setPassword("");
-    setName("");
-    setRepPassword("");
-  };
-
+ 
   return (
     <section className="vh-100 ">
       <div className="mask d-flex align-items-center h-100 gradient-custom-3">
