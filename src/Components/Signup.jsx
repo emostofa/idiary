@@ -1,51 +1,94 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../Contexts/User/UserContext";
 
 export default function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [nUser, setUser] = useState("");
+  const [repPassword, setRepPassword] = useState("");
+  const { success, responseText, addUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+
+ 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleRepPasswordChange = (e) => {
+    setRepPassword(e.target.value);
+  };
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+    
+    if (
+      name.trim() !== "" &&
+      email.trim() !== "" &&
+      password.trim() !== "" &&
+      repPassword.trim() !== ""
+    ) {
+      const newUser = {
+        name,
+        email,
+        password,
+      };
+      addUser(newUser);
+    }
+    setUser("");
+  };
+
+  const clearNoteForm = () => {
+    setEmail("");
+    setPassword("");
+    setName("");
+    setRepPassword("");
+  };
+
   return (
-    <section
-      className="vh-100 "
-    >
+    <section className="vh-100 ">
       <div className="mask d-flex align-items-center h-100 gradient-custom-3">
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-              <div className="card" style={{ borderRadius: "15px", border:'0' }}>
+              <div
+                className="card"
+                style={{ borderRadius: "15px", border: "0" }}
+              >
                 <div className="card-body p-5">
-                  <h2 className="text-center mt-4 mb-3">
-                    Create an account
-                  </h2>
+                  <h2 className="text-center mt-4 mb-3">Create an account</h2>
 
-                  <form>
+                  <form onSubmit={handleRegisterSubmit}>
                     <div className="form mb-4">
-                    <label className="form-label" for="regUsername">
-                        Your Name
-                      </label>
+                      <label className="form-label">Your Name</label>
                       <input
                         type="text"
-                        id="regUsername"
                         className="form-control form-control-sm"
                         placeholder="Enter your full name"
+                        value={name}
+                        onChange={handleNameChange}
                       />
-                      
                     </div>
 
-                   
                     <div className="form-outline mb-4">
-                    <label className="form-label" for="regEmail">
-                        Your Email
-                      </label>
+                      <label className="form-label">Your Email</label>
                       <input
                         type="email"
-                        id="regEmail"
                         className="form-control form-control-sm"
                         placeholder="Enter your email"
-                      
+                        value={email}
+                        onChange={handleEmailChange}
                       />
                     </div>
 
                     <div className="form-outline mb-4">
-                    <label className="form-label" for="regPass">
+                      <label className="form-label" htmlFor="regPass">
                         Password
                       </label>
                       <input
@@ -53,48 +96,36 @@ export default function Signup() {
                         id="regPass"
                         className="form-control form-control-sm"
                         placeholder="Enter your password"
+                        value={password}
+                        onChange={handlePasswordChange}
                       />
-                      
                     </div>
 
                     <div className="form-outline mb-4">
-                    <label className="form-label" for="regPassword">
+                      <label className="form-label" htmlFor="regPassword">
                         Repeat your password
                       </label>
                       <input
                         type="password"
                         id="regPassword"
+                        value={repPassword}
+                        onChange={handleRepPasswordChange}
+                        placeholder="Enter Password Again"
                         className="form-control form-control-sm"
                       />
-                      
                     </div>
 
-                    <div className="form-check d-flex justify-content-center mb-5">
-                      <input
-                        className="form-check-input me-2"
-                        type="checkbox"
-                        value=""
-                        id="form2Example3cg"
-                      />
-                      <label className="form-check-label" for="form2Example3cg">
-                        I agree all statements in{" "}
-                        <a href="#!" className="text-body">
-                          <u>Terms of service</u>
-                        </a>
-                      </label>
-                    </div>
-
-                    <div className="d-grid gap-2 col-5 mx-auto">
+                    <div className="d-grid col-5 mx-auto">
                       <button
-                        type="button"
-                        className="btn"
-                        style={{color:'teal-900'}}
+                        type="submit"
+                        className="btn btn-primary"
+                        style={{ color: "teal-900" }}
                       >
                         Register
                       </button>
                     </div>
 
-                    <p className="text-center text-muted mt-5 mb-0">
+                    <p className="text-center text-muted mt-3 mb-0">
                       Have already an account?{" "}
                       <Link to="/login" className="fw-bold text-body">
                         <u>Login here</u>

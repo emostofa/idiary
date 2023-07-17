@@ -3,13 +3,15 @@ import axios from "axios";
 
 export const NoteContext = createContext();
 const host = "http://192.168.0.143:4000";
-const authToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODYwODc4YWNjMWEwMmZhNzViYWE3NiIsImlhdCI6MTY4NzQzNDg3MH0.J6yOMNXlXk2ng3G5iAfd8hhg-Hj0qld-Ibo87QApais";
+const authToken = localStorage.authToken;
+  
 
 export const NoteContextProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
 
   const addNote = async (newNote) => {
+    if(!authToken) return console.log('Not signed In! ')
+    
     try {
       //axios for talking to the server
       //
@@ -23,7 +25,8 @@ export const NoteContextProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  
+}
 
   const updateNote = async (noteId, updatedNotes) => {
     if (!noteId) {
@@ -65,6 +68,7 @@ export const NoteContextProvider = ({ children }) => {
 
   //getting the notes from the server
   const getNotes = async () => {
+    if(!authToken) return console.log('Not signed In! ');
     try{
         const response = await axios.get(`${host}/api/notes/fetchnotes`,{
             headers:{

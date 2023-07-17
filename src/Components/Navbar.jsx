@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+
 export default function Navbar() {
+
+  const handleLogout =() => {
+    localStorage.clear();
+  }
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg " style={{boxShadow: '0px 2px 27px -9px rgba(0,0,0,.4)', WebkitBackdropFilter: 'blur(8px)', backdropFilter: 'blur(8px)'}} data-bs-theme="light">
@@ -114,19 +120,14 @@ export default function Navbar() {
             </button>
             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-end" data-bs-popper=''>
               <li>
-                <a className="dropdown-item" href="/">
+              <Link className="btn mx-4" to="/profile" type="button">
                   Profile
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="/">
-                  Change Password
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="/">
+              <Link className="btn mx-4" to="/" type="button" onClick={handleLogout}>
                   Logout
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

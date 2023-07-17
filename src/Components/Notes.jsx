@@ -24,8 +24,8 @@ const Notes = () => {
     e.preventDefault();
     if (title.trim() !== "" && description.trim() !== "") {
       const newNote = {
-        title: title,
-        description: description,
+        title,
+        description,
       };
       addNote(newNote);
       clearNoteForm();
